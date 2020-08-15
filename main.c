@@ -26,7 +26,8 @@ int lastDigitFactorial7base_log_approach(int n) {
   if (n <= 7)
     return lastDigitFactorial7base(n);
 
-  int len = 1, exp = 7;
+  int len = 1;
+  long exp = 7;
   while (exp * 7 <= n) {
     exp = exp * 7;
     len++;
@@ -66,6 +67,8 @@ int lastDigitFactorial7base_log_approach(int n) {
       roundup = 1;
     }
   }
+  free(arr);
+  free(seven_pow);
 
   return lastDigit7base(result * lastDigitFactorial7base(n_modify));
 }

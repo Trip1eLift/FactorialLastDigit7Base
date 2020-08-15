@@ -27,7 +27,7 @@ int lastDigitFactorial7base_log_approach(int n) {
     return lastDigitFactorial7base(n);
 
   int len = 1, exp = 7;
-  while (exp * 7 < n) {
+  while (exp * 7 <= n) {
     exp = exp * 7;
     len++;
   }
@@ -39,7 +39,7 @@ int lastDigitFactorial7base_log_approach(int n) {
   for (int i = 1; i < len; i++) {
     int m = 1;
     for (int j = 1; j <= 7; j++) {
-      m = lastDigit7base(j) * lastDigit7base(m);
+      m = arr[i - 1] * lastDigit7base(m);
     }
     arr[i] = lastDigit7base(lastDigit7base(m) * lastDigitFactorial7base(7)); 
     // With some unbelievable luck, I figured this out ^^
@@ -124,13 +124,25 @@ int main(void) {
   for (int i = 49; i <= 343; i++) {
     printf("%d!: ", i);
     printf("O(n) algorithm %d, O(log(n)) algorithm %d\n", lastDigitFactorial7base(i), lastDigitFactorial7base_log_approach(i));
-    
+
   }
 
   int i = 2000000000;
   printf("%d!: ", i);
   printf("O(log(n)) algorithm %d\n", lastDigitFactorial7base_log_approach(i));
-  
+
+  // // Debug section
+  // // Check if two algorithms denote the same result
+  // int test = 1;
+  // int lin, logn;
+  // do {
+  //   lin = lastDigitFactorial7base(test);
+  //   logn = lastDigitFactorial7base_log_approach(test);
+  //   printf("%d pass\n", test);
+  //   test++;
+  // } while (lin == logn || test < 100000);
+  // printf("%d fail\n", (test - 1));
+
   return 0;
 }
 
